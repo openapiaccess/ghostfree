@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { io } from 'socket.io-client';
 
-const isGhPages = window.location.hostname.endsWith('github.io');
-const SOCKET_URL = isGhPages
-  ? 'https://d5dd53c0e4d668fd-161-118-177-254.serveousercontent.com'
-  : '';
+const SOCKET_URL = 'https://d5dd53c0e4d668fd-161-118-177-254.serveousercontent.com';
 
 export default function App() {
   const [name, setName] = useState('');
