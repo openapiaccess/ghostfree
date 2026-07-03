@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = '';
+const SOCKET_URL = 'https://d5dd53c0e4d668fd-161-118-177-254.serveousercontent.com';
 
 export default function App() {
   const [name, setName] = useState('');
