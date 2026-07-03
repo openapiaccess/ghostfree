@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ghostfree-backend
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install --production
+    startCommand: cd backend && node src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_ORIGINS
+        value: https://ghostlyfree.netlify.app,https://openapiaccess.github.io,http://ghostyfree.duckdns.org

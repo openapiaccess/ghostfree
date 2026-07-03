@@ -4,11 +4,26 @@ import { Server } from 'socket.io';
 
 const app = express();
 const server = createServer(app);
+
+const FRONTEND_ORIGINS = process.env.FRONTEND_ORIGINS
+  ? process.env.FRONTEND_ORIGINS.split(',').map((s) => s.trim()).filter(Boolean)
+  : ['*'];
+
+const corsOrigin = FRONTEND_ORIGINS.includes('*') ? '*' : FRONTEND_ORIGINS;
+
 const io = new Server(server, {
-  cors: { origin: '*', methods: ['GET', 'POST'] }
+  cors: {
+    origin: corsOrigin,
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
 });
 
-app.use(express.static('../frontend/dist'));
+app.use(express.json());
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: Date.now() });
+});
 
 const participants = new Map();
 
